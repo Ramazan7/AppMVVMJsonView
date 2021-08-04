@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController {
     var myTableView = UITableView()
@@ -15,44 +16,21 @@ class ViewController: UIViewController {
     let screenSize = UIScreen.main.bounds
     var dataJson:[String] = ["22","33","44","66"]
     var testfunc = "testOne"
-    var yPositonView = 100
+    var yPositonView = 20
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  createTable()
-        var itemint = 20
         myScrollView.frame = self.view.bounds
-        myScrollView.backgroundColor = .red
-      //  decJson()
+        myScrollView.backgroundColor = .orange
         print(testfunc)
         print("eshe asa \(dataJson)")
-      /*  dataJson.forEach({ item in
-            print("tut posmotri \(item) ")
-            let label = UILabel()
-            label.text = item
-            label.frame = CGRect(x: 10, y: CGFloat(itemint), width: self.screenSize.width, height: 30)
-            self.myScrollView.addSubview(label)
-            itemint = itemint + 50
-        })*/
-        myScrollView.backgroundColor = .red
-        self.myScrollView.contentSize = CGSize(width: self.screenSize.width, height: CGFloat(itemint))
-        
-      /*  let viewOne = UIView()
-        viewOne.frame = CGRect(x: 0, y: 100, width: screenSize.width, height: 300)
-        viewOne.backgroundColor = .blue
-        let labelView = UILabel()
-        labelView.text = "viewText"
-        labelView.frame = CGRect(x: 0, y: (viewOne.bounds.height - 100) / 2 , width: screenSize.width, height: 100)
-        viewOne.addSubview(labelView)
-        myScrollView.addSubview(viewOne)*/
+     
         downloadJSON {
             let viewArray = self.structJson[0].view
             self.addViewPosition(viewArray: viewArray)
         }
         
         
-        
-       
-
+               
         self.view.addSubview(self.myScrollView)
        // testJson()
         // Do any additional setup after loading the view.
@@ -75,20 +53,69 @@ class ViewController: UIViewController {
                         label.frame = CGRect(x: 5, y: CGFloat(100), width: hzView.bounds.width, height: 50)
                         hzView.addSubview(label)
                         myScrollView.addSubview(hzView)
-                        yPositonView = yPositonView + 300
+                        yPositonView = yPositonView + 200
                     }
                 }
             case "selector":
-                //code
+                for item in structJson[0].data {
+                   if item.name == "selector" {
+                     let hzView = UIView()
+                       hzView.frame = CGRect(x: 0, y: CGFloat(yPositonView), width: screenSize.width, height: 200)
+                       hzView.backgroundColor = .purple
+                       //image
+                    var yPositionLabel = 50
+                    for itemVariant in item.data.variants! {
+                        let label = UILabel()
+                        label.text = "\(itemVariant.id): \(itemVariant.text)"
+                        label.frame = CGRect(x: 5, y: CGFloat(yPositionLabel), width: hzView.bounds.width, height: 50)
+                        label.tag = itemVariant.id
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(tapLabel))
+                            tap.numberOfTapsRequired = 1
+                            label.isUserInteractionEnabled = true
+                            label.addGestureRecognizer(tap)
+                        hzView.addSubview(label)
+                        yPositionLabel = yPositionLabel + 50
+                    }
+                    
+                       myScrollView.addSubview(hzView)
+                       yPositonView = yPositonView + 200
+                   }
+               }
                 print("selector")
             case "picture":
-                //code
+                 for item in structJson[0].data {
+                    if item.name == "picture" {
+                      let hzView = UIView()
+                        hzView.frame = CGRect(x: 0, y: CGFloat(yPositonView), width: screenSize.width, height: 200)
+                        hzView.backgroundColor = .red
+                        //image
+                        let url = item.data.url
+                        let image = UIImageView()
+                        image.kf.indicatorType = .activity
+                        image.kf.setImage(with: URL(string: url!), placeholder: nil, options: [.transition(.fade(0.7))],progressBlock: nil)
+                        image.frame = CGRect(x: 5, y: CGFloat(20), width: hzView.bounds.width, height: 100)
+                        image.contentMode = .scaleAspectFit
+                        hzView.addSubview(image)
+                        
+                        let label = UILabel()
+                        label.text = item.data.text
+                        label.frame = CGRect(x: 5, y: CGFloat(100), width: hzView.bounds.width, height: 50)
+                        hzView.addSubview(label)
+                        myScrollView.addSubview(hzView)
+                        yPositonView = yPositonView + 200
+                    }
+                }
                 print("picture")
             default:
                 print("end")
             }
         }
-       
+        self.myScrollView.contentSize = CGSize(width: screenSize.width, height: CGFloat(yPositonView + 20))
+    }
+    
+    @objc func tapLabel() {
+        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func decJson() {

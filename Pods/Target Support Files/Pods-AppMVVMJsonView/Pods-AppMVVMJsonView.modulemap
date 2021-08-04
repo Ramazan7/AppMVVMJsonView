@@ -1,0 +1,6 @@
+framework module Pods_AppMVVMJsonView {
+  umbrella header "Pods-AppMVVMJsonView-umbrella.h"
+
+  export *
+  module * { export * }
+}
