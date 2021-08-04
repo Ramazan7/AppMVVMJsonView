@@ -13,6 +13,7 @@
 		843C8FF226B2B804003A98D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8FF026B2B804003A98D5 /* Main.storyboard */; };
 		843C8FF426B2B806003A98D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843C8FF326B2B806003A98D5 /* Assets.xcassets */; };
 		843C8FF726B2B806003A98D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8FF526B2B806003A98D5 /* LaunchScreen.storyboard */; };
+		843C8FFF26B2B860003A98D5 /* structJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8FFE26B2B860003A98D5 /* structJson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		843C8FF326B2B806003A98D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843C8FF626B2B806003A98D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843C8FF826B2B806003A98D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		843C8FFE26B2B860003A98D5 /* structJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structJson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				843C8FEA26B2B804003A98D5 /* AppDelegate.swift */,
 				843C8FEC26B2B804003A98D5 /* SceneDelegate.swift */,
 				843C8FEE26B2B804003A98D5 /* ViewController.swift */,
+				843C8FFE26B2B860003A98D5 /* structJson.swift */,
 				843C8FF026B2B804003A98D5 /* Main.storyboard */,
 				843C8FF326B2B806003A98D5 /* Assets.xcassets */,
 				843C8FF526B2B806003A98D5 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			files = (
 				843C8FEF26B2B804003A98D5 /* ViewController.swift in Sources */,
 				843C8FEB26B2B804003A98D5 /* AppDelegate.swift in Sources */,
+				843C8FFF26B2B860003A98D5 /* structJson.swift in Sources */,
 				843C8FED26B2B804003A98D5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
