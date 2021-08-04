@@ -69,7 +69,7 @@ class ViewController: UIViewController {
                         label.text = "\(itemVariant.id): \(itemVariant.text)"
                         label.frame = CGRect(x: 5, y: CGFloat(yPositionLabel), width: hzView.bounds.width, height: 50)
                         label.tag = itemVariant.id
-                        let tap = UITapGestureRecognizer(target: self, action: #selector(tapLabel))
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(tapLabel(_:)))
                             tap.numberOfTapsRequired = 1
                             label.isUserInteractionEnabled = true
                             label.addGestureRecognizer(tap)
@@ -110,11 +110,13 @@ class ViewController: UIViewController {
                 print("end")
             }
         }
-        self.myScrollView.contentSize = CGSize(width: screenSize.width, height: CGFloat(yPositonView + 20))
+        self.myScrollView.contentSize = CGSize(width: screenSize.width, height: CGFloat(yPositonView + 25))
     }
     
-    @objc func tapLabel() {
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+    @objc func tapLabel(_ sender: UIGestureRecognizer) {
+        let text = (sender.view as! UILabel).text!
+        let alert = UIAlertController(title: "Выбрали", message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
